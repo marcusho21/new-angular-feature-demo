@@ -1,8 +1,7 @@
-import { Injectable, computed, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../environments/environments';
-import { delay, map } from 'rxjs';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { Injectable, effect, signal } from '@angular/core';
+import { map } from 'rxjs';
+import { environment } from '../../environments/environments';
 
 export type Todo = {
   userId: number;
@@ -22,6 +21,10 @@ export class TodoService {
 
   constructor(private http: HttpClient) {
     this.todos$.subscribe(this.todos.set);
+
+    effect(() => {
+      localStorage.setItem('todos', JSON.stringify(this.todos()));
+    });
   }
 
   toggleTodoCompleted(todo: Todo) {
@@ -42,6 +45,17 @@ export class TodoService {
           return { ...t, title: 'updated to new title' };
         }
         return t;
+      });
+    });
+  }
+
+  createTodo(title: string) {
+    this.todos.mutate((todos) => {
+      todos.unshift({
+        userId: 1,
+        id: new Date().getTime(),
+        title,
+        completed: false,
       });
     });
   }
