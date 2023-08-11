@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "signal-demo": {
+    "new-angular-feature-demo": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -23,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser-esbuild",
           "options": {
-            "outputPath": "dist/signal-demo",
+            "outputPath": "dist/new-angular-feature-demo",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": ["zone.js"],
@@ -62,10 +62,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "signal-demo:build:production"
+              "browserTarget": "new-angular-feature-demo:build:production"
             },
             "development": {
-              "browserTarget": "signal-demo:build:development"
+              "browserTarget": "new-angular-feature-demo:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -73,7 +73,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "signal-demo:build"
+            "browserTarget": "new-angular-feature-demo:build"
           }
         }
       }
