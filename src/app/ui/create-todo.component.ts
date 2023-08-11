@@ -32,9 +32,10 @@ export class CreateTodoComponent {
   }
 
   createTodo() {
-    if (this.newTodo.valid && this.newTodo.value.title) {
-      this.todoService.createTodo(this.newTodo.value.title);
-      this.newTodo.reset();
-    }
+    if (this.newTodo.invalid) return;
+    if (!this.newTodo.value.title) return;
+
+    this.todoService.createTodo(this.newTodo.value.title);
+    this.newTodo.reset();
   }
 }
