@@ -16,33 +16,33 @@ describe('HomeComponent', () => {
         declarations: [MockTranslatePipe],
         exports: [MockTranslatePipe],
       },
-    });
-
-    TestBed.overrideComponent(HomeComponent, {
-      set: {
-        imports: [
-          MockTodoItemComponent,
-          MockCreateTodoComponent,
-          TranslateModule,
-        ],
-        providers: [
-          {
-            provide: TodoService,
-            useValue: { todos$: of([]) },
-          },
-          {
-            provide: PaginationService,
-            useValue: {},
-          },
-          {
-            provide: TranslateService,
-            useValue: { setTranslation: () => {} },
-          },
-        ],
-      },
-    }).configureTestingModule({
-      declarations: [], // non standalone components are declared here
-    });
+    })
+      .overrideComponent(HomeComponent, {
+        set: {
+          imports: [
+            MockTodoItemComponent,
+            MockCreateTodoComponent,
+            TranslateModule,
+          ],
+          providers: [
+            {
+              provide: TodoService,
+              useValue: { todos$: of([]) },
+            },
+            {
+              provide: PaginationService,
+              useValue: {},
+            },
+            {
+              provide: TranslateService,
+              useValue: { setTranslation: () => {} },
+            },
+          ],
+        },
+      })
+      .configureTestingModule({
+        declarations: [], // non standalone components are declared here
+      });
 
     fixture = TestBed.createComponent(HomeComponent);
     component = fixture.componentInstance;
@@ -72,6 +72,6 @@ class MockCreateTodoComponent {}
 })
 class MockTranslatePipe {
   constructor() {
-    console.log('mock translate pipe');
+    console.log('proof of actually using the mock translate pipe');
   }
 }
